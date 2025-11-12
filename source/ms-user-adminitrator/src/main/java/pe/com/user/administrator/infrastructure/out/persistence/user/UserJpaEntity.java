@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "userCore")
+@Table(name = "user_core")
 public class UserJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
