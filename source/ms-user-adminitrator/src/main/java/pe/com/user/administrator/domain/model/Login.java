@@ -6,13 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Phone {
-    private String number;
-    private String citycode;
-    private String contrycode;
+public class Login {
+    private String userName;
+    private String password;
+    private String token;
 }

@@ -1,4 +1,4 @@
-package pe.com.user.administrator.domain.model;
+package pe.com.user.administrator.infrastructure.in.web.controller.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,17 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
-    private String id;
-    private String name;
-    private String email;
+public class LoginRequest {
+    private String userName;
     private String password;
-    private List<Phone> phones;
 }

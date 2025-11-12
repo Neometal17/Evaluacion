@@ -1,22 +1,23 @@
-package pe.com.user.administrator.infrastructure.adapter.out.persistence;
+package pe.com.user.administrator.infrastructure.out.persistence.user;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 @Entity
-@Table(name = "userCore")
-public class UserJpaEntity {
+@Table(name = "phone")
+@Builder
+public class PhoneJpaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
-    private String password;
+    private String number;
+    private String cityCode;
+    private String contryCode;
+    private String userId;
 }

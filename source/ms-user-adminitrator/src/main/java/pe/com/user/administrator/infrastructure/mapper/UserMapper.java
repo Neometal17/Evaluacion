@@ -1,8 +1,8 @@
 package pe.com.user.administrator.infrastructure.mapper;
 
 import pe.com.user.administrator.domain.model.User;
-import pe.com.user.administrator.infrastructure.adapter.in.web.UserDTO;
-import pe.com.user.administrator.infrastructure.adapter.out.persistence.UserJpaEntity;
+import pe.com.user.administrator.infrastructure.in.web.controller.dto.user.UserRequest;
+import pe.com.user.administrator.infrastructure.out.persistence.user.UserJpaEntity;
 
 public class UserMapper {
     public static UserJpaEntity toEntity(User user){
@@ -23,11 +23,12 @@ public class UserMapper {
                 .build();
     }
 
-    public static User toDomain(UserDTO dto){
+    public static User toDomain(UserRequest dto){
         return User.builder()
                 .name(dto.getName())
                 .password(dto.getPassword())
                 .email(dto.getEmail())
+                .phones(dto.getPhones())
                 .build();
     }
 }

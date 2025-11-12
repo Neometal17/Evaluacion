@@ -1,4 +1,4 @@
-package pe.com.user.administrator.infrastructure.adapter.in.web;
+package pe.com.user.administrator.infrastructure.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +31,26 @@ public class GlobalExceptionHandler {
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InvalidCredentiasException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidCredentialsExcption(InvalidCredentiasException ex){
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(InactiveUserException.class)
+    public ResponseEntity<Map<String, String>> handleInactiveUserExcption(InactiveUserException ex){
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(ExisteUserException.class)
+    public ResponseEntity<Map<String, String>> handleExistUserExcption(ExisteUserException ex){
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 }
