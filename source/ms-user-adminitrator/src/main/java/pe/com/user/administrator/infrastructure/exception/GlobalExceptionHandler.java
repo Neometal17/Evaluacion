@@ -34,23 +34,30 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidCredentiasException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidCredentialsExcption(InvalidCredentiasException ex){
+    public ResponseEntity<Map<String, String>> handleInvalidCredentialsException(InvalidCredentiasException ex){
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(InactiveUserException.class)
-    public ResponseEntity<Map<String, String>> handleInactiveUserExcption(InactiveUserException ex){
+    public ResponseEntity<Map<String, String>> handleInactiveUserException(InactiveUserException ex){
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(ExisteUserException.class)
-    public ResponseEntity<Map<String, String>> handleExistUserExcption(ExisteUserException ex){
+    public ResponseEntity<Map<String, String>> handleExistUserException(ExisteUserException ex){
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(ExisteUserException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidPasswordException(ExisteUserException ex){
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 }

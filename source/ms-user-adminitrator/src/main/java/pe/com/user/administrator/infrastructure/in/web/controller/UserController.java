@@ -1,6 +1,7 @@
 package pe.com.user.administrator.infrastructure.in.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,6 @@ public class UserController {
 
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> registerNewUser(@Validated @RequestBody UserRequest user){
-        return ResponseEntity.ok().body(userService.createUserUseCase(UserMapper.toDomain(user)));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUserUseCase(UserMapper.toDomain(user)));
     }
 }

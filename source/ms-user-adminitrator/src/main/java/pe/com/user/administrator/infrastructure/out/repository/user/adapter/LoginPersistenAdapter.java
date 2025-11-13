@@ -39,7 +39,7 @@ public class LoginPersistenAdapter implements LoginRepositoryPort {
                     Matcher matcher = passwordRegex.matcher(login.getPassword());
 
                     if(!matcher.matches()){
-                        throw new InvalidPasswordException("El password no cumple con ");
+                        throw new InvalidPasswordException("El password no cumple con los criterios");
                     }
 
                     String token = tokenProviderService.generateToken(user.getName());

@@ -72,8 +72,111 @@ curl --location 'http://localhost:8080/login/' \
     "password":"Adam21$"
 }'
 
+#Login
 
-.
+## Caso 1: Exitoso
+
+sequenceDiagram
+    participant Client as Postman
+    participant AuthService as Microservicio Auth
+    participant DB as Base de Datos
+
+    Client->>AuthService: POST /login {username, password}
+    AuthService->>DB: Buscar usuario por username
+    DB-->>AuthService: Datos de usuario
+
+    AuthService->>AuthService: Usaurio contraseña invalida
+    AuthService->>AuthService: Validar criterios de la contraseña
+    AuthService->>AuthService: Generar JWT
+
+    AuthService-->>Client: 200 OK {username: text, token: JWT}
+
+## Caso 2: Usuario y/o contraseña invalida
+
+sequenceDiagram
+    participant Client as Postman
+    participant AuthService as Microservicio Auth
+    participant DB as Base de Datos
+
+    Client->>AuthService: POST /login {username, password}
+    AuthService->>DB: Buscar usuario por username
+    DB-->>AuthService: Datos de usuario
+
+    AuthService->>AuthService: Validar usuario contraseña invalida
+
+    AuthService-->>Client: 401 Unauthorized {mensaje: Usuario y/o Contraseña Invalida}
+
+
+## Caso 3: Usuario Inactivo
+
+sequenceDiagram
+    participant Client as Postman
+    participant AuthService as Microservicio Auth
+    participant DB as Base de Datos
+
+    Client->>AuthService: POST /login {username, password}
+    AuthService->>DB: Buscar usuario por username
+    DB-->>AuthService: Datos de usuario
+
+    AuthService->>AuthService: Validar usuario contraseña invalida
+    AuthService->>AuthService: Usuario inactivo
+
+    AuthService-->>Client: 401 Unauthorized {mensaje: El usuario se encuenta inactivo}
+
+## Caso 4: Criterio en Password
+
+sequenceDiagram
+    participant Client as Postman
+    participant AuthService as Microservicio Auth
+    participant DB as Base de Datos
+
+    Client->>AuthService: POST /login {username, password}
+    AuthService->>DB: Buscar usuario por username
+    DB-->>AuthService: Datos de usuario
+
+    AuthService->>AuthService: Validar usuario contraseña invalida
+    AuthService->>AuthService: Usuario inactivo
+    AuthService->>AuthService: Validacion Criterio Contraseña
+
+    AuthService-->>Client: 401 Unauthorized {mensaje: El password no cumple con los criterios}
+
+# Crear Usuario
+
+## Caso 1: Exitoso
+
+sequenceDiagram
+    participant Client as Postman
+    participant AuthService as Microservicio Auth
+    participant DB as Base de Datos
+
+    Client->>AuthService: POST /user {name, email, password, phone[{number, citycode, contrycode}]}
+    AuthService->>DB: Buscar Email de usuario
+    DB-->>AuthService: Datos de usuario
+
+    AuthService->>AuthService: Validacion: Correo Existe 
+    
+    AuthService->>DB: Guardar Usuario
+    DB-->>AuthService: Modelo Usuario Guardo
+
+    AuthService->>DB: Guardar de Telefonos
+    DB-->>AuthService: Modelo Telefonos Guardo
+
+    AuthService-->>Client: 201 CREATE: {name, email, password, phone[{number, citycode, contrycode}]}
+
+## Caso 2: 
+
+sequenceDiagram
+    participant Client as Postman
+    participant AuthService as Microservicio Auth
+    participant DB as Base de Datos
+
+    Client->>AuthService: POST /user {name, email, password, phone[{number, citycode, contrycode}]}
+    AuthService->>DB: Buscar Email de usuario
+    DB-->>AuthService: Datos de usuario
+
+    AuthService->>AuthService: Validacion: Correo Existe 
+
+    AuthService-->>Client: 409 Conflict: {mensaje: El correo ya registrado}
 
 ## Autor
 
