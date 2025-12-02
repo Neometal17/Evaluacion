@@ -12,36 +12,57 @@ import java.util.Date;
 
 public class TokenProviderAdapter implements TokenProviderPort {
 
-    private final String secret = "miClaveSuperSeguraParaJWT_De32CaracteresOMas_123456";
-    private final SecretKey key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-    private final long expiration = 3600000;
+    private static final String SECRET = "miClaveSuperSeguraParaJWTDe32CaracteresOMas1234567";
+    private static final SecretKey KEY = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+    private static final long EXPIRATION = 450000;
 
     @Override
     public String generateToken(String userName) {
         Date now = new Date();
-        Date expiry = new Date(now.getTime() + expiration);
+        Date expiry = new Date(now.getTime() + EXPIRATION);
         return Jwts.builder()
                 .setSubject(userName)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
-                .signWith(key, SignatureAlgorithm.HS256)
+                .signWith(KEY, SignatureAlgorithm.HS256)
                 .compact();
     }
 
     @Override
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+            Jwts.parserBuilder()
+                    .setSigningKey(KEY)
+                    .build()
+                    .parseClaimsJws(token);
             return true;
-        } catch (JwtException e) {
+        } catch (io.jsonwebtoken.ExpiredJwtException e) {
+            System.out.println("Token expirado");
+            return false;
+
+        } catch (io.jsonwebtoken.SignatureException e) {
+            System.out.println("Firma del token inválida");
+            return false;
+
+        } catch (io.jsonwebtoken.MalformedJwtException e) {
+            System.out.println("Token malformado");
+            return false;
+
+        } catch (io.jsonwebtoken.UnsupportedJwtException e) {
+            System.out.println("Token no soportado");
+            return false;
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Token vacío o nulo");
             return false;
         }
     }
 
     @Override
     public String getUserNameToken(String token) {
-        return Jwts.parser()
-                .setSigningKey(secret)
+        return Jwts.parserBuilder()
+                .setSigningKey(KEY)
+                .build()
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();

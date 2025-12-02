@@ -54,7 +54,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
-    @ExceptionHandler(ExisteUserException.class)
+    @ExceptionHandler(InvalidPasswordException.class)
     public ResponseEntity<Map<String, String>> handleInvalidPasswordException(ExisteUserException ex){
         Map<String, String> response = new HashMap<>();
         response.put("mensaje", ex.getMessage());
