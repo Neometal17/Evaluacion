@@ -1,6 +1,5 @@
-package pe.com.user.administrator.infrastructure.out.repository.user.adapter;
+package pe.com.user.administrator.infrastructure.adapter.out;
 
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;

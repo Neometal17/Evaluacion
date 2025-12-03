@@ -8,11 +8,11 @@ import pe.com.user.administrator.application.port.out.UserRepositoryPort;
 import pe.com.user.administrator.application.service.LoginService;
 import pe.com.user.administrator.application.service.TokenProviderService;
 import pe.com.user.administrator.application.service.UserService;
-import pe.com.user.administrator.infrastructure.out.repository.user.JpaPhoneRepository;
-import pe.com.user.administrator.infrastructure.out.repository.user.JpaUserRepository;
-import pe.com.user.administrator.infrastructure.out.repository.user.adapter.LoginPersistenAdapter;
-import pe.com.user.administrator.infrastructure.out.repository.user.adapter.TokenProviderAdapter;
-import pe.com.user.administrator.infrastructure.out.repository.user.adapter.UserPersistenAdapter;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.repository.JpaPhoneRepository;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.repository.JpaUserRepository;
+import pe.com.user.administrator.infrastructure.adapter.out.LoginPersistenAdapter;
+import pe.com.user.administrator.infrastructure.adapter.out.TokenProviderAdapter;
+import pe.com.user.administrator.infrastructure.adapter.out.UserPersistenAdapter;
 
 @Configuration
 public class BeanConfiguration {

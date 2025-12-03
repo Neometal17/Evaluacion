@@ -1,7 +1,7 @@
-package pe.com.user.administrator.infrastructure.mapper;
+package pe.com.user.administrator.infrastructure.adapter.out.h2.mapper;
 
 import pe.com.user.administrator.domain.model.Phone;
-import pe.com.user.administrator.infrastructure.out.persistence.user.PhoneJpaEntity;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.persistence.PhoneJpaEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package pe.com.user.administrator.infrastructure.in.web.controller.dto.login;
+package pe.com.user.administrator.infrastructure.adapter.in.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

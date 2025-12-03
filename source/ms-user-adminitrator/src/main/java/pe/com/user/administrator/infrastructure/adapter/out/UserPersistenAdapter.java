@@ -1,4 +1,4 @@
-package pe.com.user.administrator.infrastructure.out.repository.user.adapter;
+package pe.com.user.administrator.infrastructure.adapter.out;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -6,12 +6,12 @@ import pe.com.user.administrator.application.port.out.UserRepositoryPort;
 import pe.com.user.administrator.domain.model.Phone;
 import pe.com.user.administrator.domain.model.User;
 import pe.com.user.administrator.infrastructure.exception.ExisteUserException;
-import pe.com.user.administrator.infrastructure.mapper.PhoneMapper;
-import pe.com.user.administrator.infrastructure.out.persistence.user.PhoneJpaEntity;
-import pe.com.user.administrator.infrastructure.out.persistence.user.UserJpaEntity;
-import pe.com.user.administrator.infrastructure.mapper.UserMapper;
-import pe.com.user.administrator.infrastructure.out.repository.user.JpaPhoneRepository;
-import pe.com.user.administrator.infrastructure.out.repository.user.JpaUserRepository;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.mapper.PhoneMapper;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.persistence.PhoneJpaEntity;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.persistence.UserJpaEntity;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.mapper.UserMapper;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.repository.JpaPhoneRepository;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.repository.JpaUserRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pe.com.user.administrator.infrastructure.in.web.controller.dto.user;
+package pe.com.user.administrator.infrastructure.adapter.in.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

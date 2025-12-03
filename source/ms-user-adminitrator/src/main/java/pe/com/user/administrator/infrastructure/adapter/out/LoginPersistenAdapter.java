@@ -1,4 +1,4 @@
-package pe.com.user.administrator.infrastructure.out.repository.user.adapter;
+package pe.com.user.administrator.infrastructure.adapter.out;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,8 +9,8 @@ import pe.com.user.administrator.domain.model.Login;
 import pe.com.user.administrator.infrastructure.exception.InactiveUserException;
 import pe.com.user.administrator.infrastructure.exception.InvalidCredentiasException;
 import pe.com.user.administrator.infrastructure.exception.InvalidPasswordException;
-import pe.com.user.administrator.infrastructure.mapper.LoginMapper;
-import pe.com.user.administrator.infrastructure.out.repository.user.JpaUserRepository;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.mapper.LoginMapper;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.repository.JpaUserRepository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

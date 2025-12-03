@@ -1,4 +1,4 @@
-package pe.com.user.administrator.infrastructure.out.persistence.user;
+package pe.com.user.administrator.infrastructure.adapter.out.h2.persistence;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

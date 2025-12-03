@@ -1,9 +1,9 @@
-package pe.com.user.administrator.infrastructure.mapper;
+package pe.com.user.administrator.infrastructure.adapter.out.h2.mapper;
 
 import pe.com.user.administrator.domain.model.Login;
-import pe.com.user.administrator.infrastructure.in.web.controller.dto.login.LoginRequest;
-import pe.com.user.administrator.infrastructure.in.web.controller.dto.login.LoginResponse;
-import pe.com.user.administrator.infrastructure.out.persistence.user.UserJpaEntity;
+import pe.com.user.administrator.infrastructure.adapter.in.dto.login.LoginRequest;
+import pe.com.user.administrator.infrastructure.adapter.in.dto.login.LoginResponse;
+import pe.com.user.administrator.infrastructure.adapter.out.h2.persistence.UserJpaEntity;
 
 public class LoginMapper {
 
