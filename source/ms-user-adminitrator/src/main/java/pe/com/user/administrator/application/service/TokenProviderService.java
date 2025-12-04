@@ -10,7 +10,7 @@ public class TokenProviderService implements GenerateTokenUseCase {
     private final TokenProviderPort tokenProviderPort;
 
     @Override
-    public String generateToken(String userName) {
+    public String execute(String userName) {
         return tokenProviderPort.generateToken(userName);
     }
 

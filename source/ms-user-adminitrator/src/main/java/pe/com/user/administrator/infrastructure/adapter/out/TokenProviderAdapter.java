@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import pe.com.user.administrator.application.port.out.TokenProviderPort;
+import pe.com.user.administrator.infrastructure.exception.ExpiredTokenException;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -37,8 +38,7 @@ public class TokenProviderAdapter implements TokenProviderPort {
             return true;
         } catch (io.jsonwebtoken.ExpiredJwtException e) {
             System.out.println("Token expirado");
-            return false;
-
+            throw new ExpiredTokenException("Token expirado");
         } catch (io.jsonwebtoken.SignatureException e) {
             System.out.println("Firma del token inválida");
             return false;

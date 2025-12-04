@@ -34,13 +34,13 @@ public class BeanConfiguration {
      * LoginServives and Port
      * */
     @Bean
-    public LoginRepositoryPort loginRepositoryPort(JpaUserRepository jpaUserRepository, TokenProviderService tokenProviderService){
-        return new LoginPersistenAdapter(jpaUserRepository, tokenProviderService);
+    public LoginRepositoryPort loginRepositoryPort(JpaUserRepository jpaUserRepository){
+        return new LoginPersistenAdapter(jpaUserRepository);
     }
 
     @Bean
-    public LoginService loginService(LoginRepositoryPort loginRepositoryPort){
-        return new LoginService(loginRepositoryPort);
+    public LoginService loginService(LoginRepositoryPort loginRepositoryPort, TokenProviderPort tokenProviderPort, PasswordValidator passwordValidator){
+        return new LoginService(loginRepositoryPort, tokenProviderPort, passwordValidator);
     }
 
     /*

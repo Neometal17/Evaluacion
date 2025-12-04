@@ -25,6 +25,6 @@ public class LoginController {
     @PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Login", description = "Para validar inicio de session")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest login){
-        return ResponseEntity.ok().body(LoginMapper.toResponse(loginService.signIn(LoginMapper.toDomain(login))));
+        return ResponseEntity.ok().body(LoginMapper.toResponse(loginService.execute(LoginMapper.toDomain(login))));
     }
 }

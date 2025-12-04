@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import pe.com.user.administrator.application.port.out.TokenProviderPort;
+import pe.com.user.administrator.infrastructure.exception.ExpiredTokenException;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -28,19 +29,24 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader("Authorization");
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            String token = authHeader.substring(7);
-            if (jwtUtils.validateToken(token)) {
-                UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(
-                                jwtUtils.getUserNameToken(token),
-                                null,
-                                Collections.emptyList()
-                        );
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+        try {
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                String token = authHeader.substring(7);
+                if (jwtUtils.validateToken(token)) {
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(
+                                    jwtUtils.getUserNameToken(token),
+                                    null,
+                                    Collections.emptyList()
+                            );
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
             }
-        }
 
+        } catch (ExpiredTokenException ex){
+            request.setAttribute("jwt_exception", ex);
+            throw ex;
+        }
         filterChain.doFilter(request, response);
     }
 }

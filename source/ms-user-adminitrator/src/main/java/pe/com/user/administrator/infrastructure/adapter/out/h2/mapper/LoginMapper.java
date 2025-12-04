@@ -1,6 +1,7 @@
 package pe.com.user.administrator.infrastructure.adapter.out.h2.mapper;
 
 import pe.com.user.administrator.domain.model.Login;
+import pe.com.user.administrator.infrastructure.adapter.in.dto.login.LoginDto;
 import pe.com.user.administrator.infrastructure.adapter.in.dto.login.LoginRequest;
 import pe.com.user.administrator.infrastructure.adapter.in.dto.login.LoginResponse;
 import pe.com.user.administrator.infrastructure.adapter.out.h2.persistence.UserJpaEntity;
@@ -18,6 +19,14 @@ public class LoginMapper {
         return Login.builder()
                 .userName(entity.getName())
                 .token(entity.getToken())
+                .active(entity.getActive())
+                .build();
+    }
+
+    public static LoginDto toDto(UserJpaEntity entity){
+        return LoginDto.builder()
+                .name(entity.getName())
+                .active(entity.getActive())
                 .build();
     }
 

@@ -26,6 +26,6 @@ public class UserController {
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Registrar Usuario", description = "Para registrar los usuarios")
     public ResponseEntity<?> registerNewUser(@Validated @RequestBody UserRequest user){
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUserUseCase(UserMapper.toDomain(user)));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.execute(UserMapper.toDomain(user)));
     }
 }

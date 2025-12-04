@@ -1,4 +1,4 @@
-package pe.com.user.administrator.domain.model;
+package pe.com.user.administrator.infrastructure.adapter.in.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Login {
-    private String userName;
-    private String password;
-    private String token;
+public class LoginDto {
+    private String name;
     private int active;
 }

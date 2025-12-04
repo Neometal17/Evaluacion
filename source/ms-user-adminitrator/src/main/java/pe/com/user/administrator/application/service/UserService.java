@@ -11,7 +11,7 @@ public class UserService implements CreateUserUseCase {
     private final UserRepositoryPort userRepositoryPort;
 
     @Override
-    public User createUserUseCase(User user) {
+    public User execute(User user) {
         return userRepositoryPort.save(user);
     }
 }
