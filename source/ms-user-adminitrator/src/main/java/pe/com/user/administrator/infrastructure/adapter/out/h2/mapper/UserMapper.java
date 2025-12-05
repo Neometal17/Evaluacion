@@ -4,6 +4,8 @@ import pe.com.user.administrator.domain.model.User;
 import pe.com.user.administrator.infrastructure.adapter.in.dto.user.UserRequest;
 import pe.com.user.administrator.infrastructure.adapter.out.h2.persistence.UserJpaEntity;
 
+import java.time.LocalDateTime;
+
 public class UserMapper {
     public static UserJpaEntity toEntity(User user){
         UserJpaEntity entity = new UserJpaEntity();
@@ -11,6 +13,14 @@ public class UserMapper {
         entity.setName(user.getName());
         entity.setPassword(user.getPassword());
         entity.setEmail(user.getEmail());
+
+        LocalDateTime dateCurrent = LocalDateTime.now();
+        entity.setCreate(dateCurrent);
+        entity.setLastLogin(dateCurrent);
+        entity.setModified(dateCurrent);
+        entity.setToken("");
+        entity.setActive(1);
+
         return entity;
     }
 

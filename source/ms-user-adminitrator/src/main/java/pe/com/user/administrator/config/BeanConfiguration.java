@@ -17,6 +17,7 @@ import pe.com.user.administrator.infrastructure.adapter.out.UserPersistenAdapter
 @Configuration
 public class BeanConfiguration {
 
+
     /*
     * UserServives and Port
     * */
@@ -43,9 +44,6 @@ public class BeanConfiguration {
         return new LoginService(loginRepositoryPort, tokenProviderPort, passwordValidator);
     }
 
-    /*
-     * TokenProviderServives and Port
-     * */
     @Bean
     public TokenProviderPort tokenProviderPort(){
         return new TokenProviderAdapter();

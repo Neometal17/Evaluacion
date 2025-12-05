@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface UserRepositoryPort {
     User save(User user);
+    boolean existsUser(String email);
     List<User> findAll();
 }
